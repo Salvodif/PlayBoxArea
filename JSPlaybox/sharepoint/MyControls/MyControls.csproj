@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{76E5E083-B584-4DB3-86BC-228E33B9DCFF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyControls</RootNamespace>
+    <AssemblyName>MyControls</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BB1F664B-9266-4fd6-B973-E1E44974B511};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SandboxedSolution>False</SandboxedSolution>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.SharePoint" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BulletedListPro\BulletedListPro.ascx.cs">
+      <DependentUpon>BulletedListPro.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="BulletedListPro\BulletedListPro.ascx.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BulletedListPro.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="BulletedList\BulletedListWebPart.ascx.cs">
+      <DependentUpon>BulletedListWebPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="BulletedList\BulletedListWebPart.ascx.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BulletedListWebPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DropDownListPro\DropDownListPro.ascx.cs">
+      <DependentUpon>DropDownListPro.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DropDownListPro\DropDownListPro.ascx.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DropDownListPro.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DropDownList\DropDrownListWebPart.ascx.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DropDrownListWebPart.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BulletedListPro\BulletedListPro.webpart" />
+    <None Include="BulletedListPro\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{94e46670-a903-4ea4-9c8a-e9afc9cf9529}</SharePointProjectItemId>
+    </None>
+    <None Include="BulletedList\BulletedList.webpart" />
+    <None Include="BulletedList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c53d3aa0-1bf6-4104-badc-170f0e351035}</SharePointProjectItemId>
+    </None>
+    <None Include="DropDownListPro\DropDownListPro.webpart" />
+    <None Include="DropDownListPro\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4e707254-0148-41b5-9c72-7678c25e4e6f}</SharePointProjectItemId>
+    </None>
+    <None Include="key.snk" />
+    <None Include="DropDownList\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f2b4135c-e8c7-4c9e-8ff5-40ccb1692b94}</SharePointProjectItemId>
+    </None>
+    <None Include="DropDownList\DropDownList.webpart" />
+    <None Include="DropDownList\Elements.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BulletedListPro\BulletedListPro.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>BulletedListPro.ascx.g.cs</LastGenOutput>
+    </Content>
+    <Content Include="BulletedListPro\Elements.xml" />
+    <Content Include="BulletedList\BulletedListWebPart.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>BulletedListWebPart.ascx.g.cs</LastGenOutput>
+    </Content>
+    <Content Include="BulletedList\Elements.xml" />
+    <Content Include="DropDownListPro\DropDownListPro.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>DropDownListPro.ascx.g.cs</LastGenOutput>
+    </Content>
+    <Content Include="DropDownListPro\Elements.xml" />
+    <Content Include="DropDownList\DropDrownListWebPart.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>DropDrownListWebPart.ascx.g.cs</LastGenOutput>
+    </Content>
+    <Compile Include="DropDownList\DropDrownListWebPart.ascx.cs">
+      <DependentUpon>DropDrownListWebPart.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Package\Package.package">
+      <PackageId>{e2c3fb18-92f2-42a4-835e-2a3c4878643a}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="Features\MyControls Feature\MyControls Feature.feature">
+      <FeatureId>{fb2c259d-6ea7-45be-b582-188ef4cb9808}</FeatureId>
+    </None>
+    <None Include="Features\MyControls Feature\MyControls Feature.Template.xml">
+      <DependentUpon>MyControls Feature.feature</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{5b0ab90b-929a-440c-88e8-af4214b52bd4}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{20a63d56-dcba-4eee-8428-c557d1824b32}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{a97f60dd-afd3-4500-b55e-718d5ba87111}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PresentationLayer\PresentationLayer.csproj">
+      <Project>{3eba9f97-3e80-4e37-a446-5f11dbcdba02}</Project>
+      <Name>PresentationLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>

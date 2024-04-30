@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AzureConf>
+	<Blob>
+		<Container FileExt="css" Name="css" />
+		<Container FileExt="js" Name="scripts" />
+	</Blob>
+	<AzureAccountInfo>
+		<Name>your blob account name</Name>
+		<Key>your blob account key</Key>
+	</AzureAccountInfo>
+</AzureConf>

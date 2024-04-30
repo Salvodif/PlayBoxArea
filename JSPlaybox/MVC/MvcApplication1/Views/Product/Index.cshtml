@@ -1,0 +1,159 @@
+﻿@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section head
+{
+	<script src="@Url.Content("~/Scripts/SDF.DTO.js")" type="text/javascript"> </script>
+	<script src="@Url.Content("~/Scripts/SDF.Utils.js")" type="text/javascript"> </script>
+	<script src="@Url.Content("~/Scripts/SDF.Views.js")" type="text/javascript"> </script>
+
+	<script language="javascript" type="text/javascript">
+		$ ( document ).ready ( function ( ) {
+			$ ( "#product-add-dialog" ).hide ( );
+			ko.applyBindings ( SDF.Views.Product );
+		} );
+	</script>
+}
+<div id="productsList">
+	<div id="productsList-head">
+		<h2>
+			Your products (<span data-bind="text: filteredItems().length"></span>)</h2>
+		<br />
+		<a href="#" id="product-add">Add new product</a>
+		<br />
+		<br />
+	</div>
+	<div>
+		<p>
+			Filter:
+			<input data-bind="value: filter, valueUpdate: 'afterkeydown'" /></p>
+	</div>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>
+						Name
+					</th>
+					<th>
+						Color
+					</th>
+					<th>
+						List Price
+					</th>
+					<th>
+						Product Model
+					</th>
+					<th>
+						Qty
+					</th>
+					<th>
+					</th>
+					<th>
+					</th>
+				</tr>
+			</thead>
+			<tbody data-bind="foreach: filteredItems">
+				<tr>
+					<td>
+						<!-- ko if: edit -->
+						<input type="text" data-bind="value: name" />
+						<!-- /ko -->
+						<!-- ko ifnot: edit -->
+						<span data-bind="text: name"></span>
+						<!-- /ko -->
+					</td>
+					<td>
+						<!-- ko if: edit -->
+						<select data-bind="options: $root.colors, optionsCaption: 'Choose...'">
+						</select>
+						<!-- /ko -->
+						<!-- ko ifnot: edit -->
+						<span data-bind="text: color"></span>
+						<!-- /ko -->
+					</td>
+					<td>
+						<!-- ko if: edit -->
+						<input type="number" data-bind="value: price" />
+						<!-- /ko -->
+						<!-- ko ifnot: edit -->
+						<span data-bind="text: price"></span>
+						<!-- /ko -->
+					</td>
+					<td>
+						<!-- ko if: edit -->
+						<span data-bind="text: model"></span>
+						<select data-bind="options: $root.productModels,
+											optionsText: 'Name',
+											optionsValue: 'ProductModelId',
+											value: model,
+											optionsCaption: 'Choose...'">
+						</select>
+						<!-- /ko -->
+						<!-- ko ifnot: edit -->
+						<span data-bind="text: model"></span>
+						<!-- /ko -->
+					</td>
+					<td>
+						<label data-bind="text: qty">
+						</label>
+					</td>
+					<td>
+						<a href="#" id="product-sell">Sell</a>
+					</td>
+					<td>
+						<a href="#" id="product-edit" data-bind="event: { click: edit }, text: editOrSubmit"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+@*    <div id="product-add-dialog" title="Add new product">
+		<table>
+			<tr>
+				<td>
+					Name:
+				</td>
+				<td>
+					<input type="text" />
+				</td>
+			</tr>
+			<tr>
+@*                <td>
+					Color:
+				</td>
+				<td>
+					<select data-bind="options: colors">
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					List Price:
+				</td>
+				<td>
+					<input type="number" />
+				</td>
+			</tr>
+@*            <tr>
+				<td>
+					Product Model:
+				</td>
+				<td>
+					<select data-bind="options: colors">
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Qty:
+				</td>
+				<td>
+					<input type="number" />
+				</td>
+			</tr>
+		</table>
+	</div>
+*@

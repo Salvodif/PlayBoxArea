@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="e2c3fb18-92f2-42a4-835e-2a3c4878643a" solutionId="e2c3fb18-92f2-42a4-835e-2a3c4878643a" resetWebServer="false" name="MyControls" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <projectOutputAssembly location="PresentationLayer.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\PresentationLayer\PresentationLayer.csproj">
+      <safeControls>
+        <safeControl assemblyName="PresentationLayer" namespaceName="PresentationLayer" typeName="*" isSafeAgainstScript="false" />
+      </safeControls>
+    </projectOutputAssembly>
+    <projectOutputAssembly location="Interfaces.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\Interfaces\Interfaces.csproj">
+      <safeControls>
+        <safeControl assemblyName="Interfaces" namespaceName="Interfaces" typeName="*" isSafeAgainstScript="false" />
+      </safeControls>
+    </projectOutputAssembly>
+    <projectOutputAssembly location="DTO.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\DTO\DTO.csproj">
+      <safeControls>
+        <safeControl assemblyName="DTO" namespaceName="DTO" typeName="*" isSafeAgainstScript="false" />
+      </safeControls>
+    </projectOutputAssembly>
+    <projectOutputAssembly location="Model.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\Model\Model.csproj">
+      <safeControls>
+        <safeControl assemblyName="Model" namespaceName="Model" typeName="*" isSafeAgainstScript="false" />
+      </safeControls>
+    </projectOutputAssembly>
+  </assemblies>
+  <features>
+    <featureReference itemId="fb2c259d-6ea7-45be-b582-188ef4cb9808" />
+  </features>
+</package>

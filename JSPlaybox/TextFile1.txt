@@ -1,0 +1,235 @@
+@*@section head
+{
+	<script language="javascript" type="text/javascript">
+		//custom binding to initialize a jQuery UI dialog
+		ko.bindingHandlers.jqDialog = {
+			init: function (element, valueAccessor) {
+				var options = ko.utils.unwrapObservable(valueAccessor()) || {};
+
+				//handle disposal
+				ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+					$(element).dialog("destroy");
+				});
+
+				$(element).dialog(options);
+			}
+		};
+
+		$.fx.speeds._default = 1000;
+
+		$(document).ready(function () {
+
+			$("#dialog").dialog({
+				autoOpen: false,
+				show: "blind",
+				hide: "explode",
+				width: 600
+			});
+
+			function productDto(data) {
+				var self = this;
+				self.id = data.Id;
+				self.name = data.Name;
+				self.color = data.Color;
+				self.price = data.ListPrice;
+				self.model = data.ProductModel;
+				self.qty = ko.observable(data.Quantity);
+			}
+
+			function viewModel() {
+				var self = this;
+
+				self.dlg = document.getElementById("dialog");
+				self.dlg.colors = ko.observableArray([]);
+				self.dlg.productModels = ko.observableArray([]);
+
+				self.products = ko.observableArray([]);
+
+				$.get('/Product/InventoryData',
+					function (data) {
+						ko.utils.arrayForEach(data,
+							function (item) {
+								self.products.push(new productDto(item));
+							});
+					});
+
+				// Operations
+				self.sell = function (product) {
+					$.post('/Product/Sell', { id: product.id },
+						function (data) {
+							product.qty(data.Quantity);
+						});
+				};
+
+				self.modify = function (htmlElement) {
+					alert(htmlElement);
+				};
+
+				self.openNewProductDialog = function () {
+					$.get('/Product/GetColors',
+						function (data) {
+							ko.utils.arrayForEach(data,
+								function (item) {
+									self.dlg.colors.push(item);
+								});
+						});
+
+					$.get('/Product/GetProductModels',
+						function (data) {
+							ko.utils.arrayForEach(data,
+								function (item) {
+									self.dlg.productModels.push(item.Name);
+								});
+
+							$("#dialog").dialog("open");
+						});
+
+					// Add new empty object
+					self.products(new productDto({
+						Id: "",
+						Name: "",
+						Color: "",
+						ListPrice: 0,
+						ProductModel: "",
+						Quantity: 0
+					}));
+				};
+
+				self.dlg.add = function (htmlDto) {
+					alert(htmlDto);
+				};
+			}
+
+			ko.applyBindings(new viewModel());
+		});
+	</script>
+}
+<h2>
+	Your products (<span data-bind="text: products().length"></span>)</h2>
+<div>
+	<a href="#" data-bind="click: openNewProductDialog">Add new product</a>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th>
+				Name
+			</th>
+			<th>
+				Color
+			</th>
+			<th>
+				ListPrice
+			</th>
+			<th>
+				ProductModel
+			</th>
+			<th>
+				Qty
+			</th>
+			<th>
+			</th>
+			<th>
+			</th>
+		</tr>
+	</thead>
+	<tbody data-bind="foreach: products">
+		<tr>
+			<td>
+				<input type="text" data-bind="value: name" readonly />
+			</td>
+			<td data-bind="text: color">
+			</td>
+			<td data-bind="text: price">
+			</td>
+			<td data-bind="text: model">
+			</td>
+			<td data-bind="text: qty">
+			</td>
+			<td>
+				<a href="#" data-bind="click: $root.sell.bind($data)">Sell</a>
+			</td>
+			<td>
+				<a href="#" data-bind="click: $root.modify.bind($(this))">Modify</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div id="details" data-bind="jqDialog: { autoOpen: false, resizable: false, modal: true }, template: { name: 'editTmpl', data: selectedProduct }, openDialog: selectedProduct"> 
+</div>
+
+<script id="editTmpl" type="text/html">
+	<div id="dialog" title="Add new product">
+		<p>Name: <input type="text" /></p>
+		<p>Color: <select data-bind="options: dlg.colors"></select></p>
+		<p>ListPrice: <input type="text" /></p>
+		<p>ProductModel: <select data-bind="options: dlg.productModels"></select></p>
+		<p>Qty: <input type="text" /></p>
+		<p><a href="#" data-bind="click: $root.dlg.add.bind($(this))">Add</a></p>
+	</div>
+</script>
+
+<style>
+	td
+	{
+		padding: 5px;
+	}
+	input
+	{
+		width: 100px;
+		margin: 10px;
+	}
+	label
+	{
+		width: 100px;
+	}
+	
+</style>
+<table>
+	<tr>
+		<th>
+			Id
+		</th>
+		<th>
+			Name
+		</th>
+		<th>
+		</th>
+		<th>
+		</th>
+	</tr>
+	<tbody data-bind="foreach: productList">
+		<tr>
+			<td data-bind="text: id">
+			</td>
+			<td data-bind="text: name">
+			</td>
+			<td>
+				<button data-bind="click: $root.editProduct">
+					Edit</button>
+			</td>
+			<td>
+				<button data-bind="click: $root.removeProduct">
+					Delete</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<button data-bind="click: addProduct">
+	Add Product</button>
+<hr />
+<div id="details" data-bind="jqDialog: { autoOpen: false, resizable: false, modal: true }, template: { name: 'editTmpl', data: selectedProduct }, openDialog: selectedProduct">
+</div>
+<script id="editTmpl" type="text/html">
+	<p>
+		<label>ID: </label>
+		<input data-bind="value: editId"  />
+	</p>
+	<p>
+		<label>Name: </label>
+		<input data-bind="value: editName"  />
+	</p>        
+	<button data-bind="jqButton: {}, click: $root.accept">Accept</button>
+	<button data-bind="jqButton: {}, click: $root.cancel">Cancel</button>
+</script>*@

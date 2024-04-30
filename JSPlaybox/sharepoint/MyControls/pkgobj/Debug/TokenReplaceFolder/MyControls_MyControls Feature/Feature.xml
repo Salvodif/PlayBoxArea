@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Description="My Visual Web Part Feature" Id="fb2c259d-6ea7-45be-b582-188ef4cb9808" Scope="Site" Title="MyControls Feature">
+  <ElementManifests>
+    <ElementManifest Location="DropDownList\Elements.xml" />
+    <ElementFile Location="DropDownList\DropDownList.webpart" />
+    <ElementManifest Location="BulletedList\Elements.xml" />
+    <ElementFile Location="BulletedList\BulletedList.webpart" />
+    <ElementManifest Location="BulletedListPro\Elements.xml" />
+    <ElementFile Location="BulletedListPro\BulletedListPro.webpart" />
+    <ElementManifest Location="DropDownListPro\Elements.xml" />
+    <ElementFile Location="DropDownListPro\DropDownListPro.webpart" />
+  </ElementManifests>
+</Feature>
